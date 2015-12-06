@@ -113,6 +113,16 @@ class SpaceInformation
 		return num_nodes_;
 	}
 
+	bool isNodeRepeatable (int idx)
+	{
+		return node_[idx].isRepeatable();
+	}
+
+	bool isNodeRequired (int idx)
+	{
+		return node_[idx].isRequired();
+	}
+
 	friend ostream &operator<< (ostream &output, const SpaceInformation &S)
 	{
 		output << "NODES:" << std::endl << std::endl;

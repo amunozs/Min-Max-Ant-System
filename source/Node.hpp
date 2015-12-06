@@ -18,7 +18,7 @@ class Node
 	Node () : repeatable_(0), required_(0), name_("NoName") {}
 	Node (bool required, bool repeatable, std::string name ="NoName") : repeatable_(repeatable), required_(required), name_(name) {}
 
-	bool isrepeatable	() 	{ return repeatable_; }
+	bool isRepeatable	() 	{ return repeatable_; }
 	bool isRequired		() 	{ return required_; }
 	std::string getName	() 	{ return name_; }
 
