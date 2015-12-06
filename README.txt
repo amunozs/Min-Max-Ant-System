@@ -1,1 +1,1 @@
-Min Max Ant System for Generalised Assignation Problem
+Min Max Ant System for Generalised Assignment Problem
