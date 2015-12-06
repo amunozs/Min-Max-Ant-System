@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include "./Node.hpp"
+#include "./SpaceInformation.hpp"
 
 int main () {
-	ProblemDefinition P;
+	SpaceInformation P;
 	std::cout<<"OK"<<endl;
 	P.readFromFile ("prueba.txt");
 	std::cout<<P;
