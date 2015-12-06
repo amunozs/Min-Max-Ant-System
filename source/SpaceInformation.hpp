@@ -108,6 +108,11 @@ class SpaceInformation
 		return probability_[node_1][node_2];
 	}
 	
+	std::string getNodeName (int idx)
+	{
+		return node_[idx].getName();
+	}
+
 	int getNumNodes () 
 	{
 		return num_nodes_;
@@ -136,6 +141,13 @@ class SpaceInformation
 		{
 			for (int c = 0; c < S.num_nodes_; ++c)
 				output << i << "," << c << ": " << S.distance_[i][c] << std::endl;
+		}
+	
+		output << std::endl << "PROBABILITIES:" << std::endl << std::endl;
+ 		for (int i = 0; i < S.num_nodes_; ++i)
+		{
+			for (int c = 0; c < S.num_nodes_; ++c)
+				output << i << "," << c << ": " << S.probability_[i][c] << std::endl;
 		}
 		return output;
 	}
