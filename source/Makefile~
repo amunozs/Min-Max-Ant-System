@@ -1,0 +1,2 @@
+prueba: main.c
+     gcc -o prueba main.c -I.
