@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 
+//TODO quitar using namespace
 using namespace std;
 class Node 
 {
@@ -18,9 +19,9 @@ class Node
 	Node () : repeatable_(0), required_(0), name_("NoName") {}
 	Node (bool required, bool repeatable, std::string name ="NoName") : repeatable_(repeatable), required_(required), name_(name) {}
 
-	bool isRepeatable	() 	{ return repeatable_; }
-	bool isRequired		() 	{ return required_; }
-	std::string getName	() 	{ return name_; }
+	bool isRepeatable	() const	{ return repeatable_; }
+	bool isRequired		() const	{ return required_; }
+	std::string getName	() const	{ return name_; }
 
 	void setrepeatable	(bool repeatable)	{ repeatable_ = repeatable; }
 	void setRequired	(bool required)		{ required_ = required; }

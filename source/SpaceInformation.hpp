@@ -98,32 +98,37 @@ class SpaceInformation
 		probability_[node_1][node_2] = value;
 	}
 
-	double getFeromone (int node_1, int node_2)
+	double getFeromone (int node_1, int node_2) const
 	{
 		return feromone_[node_1][node_2];
 	}
 
-	double getProbability (int node_1, int node_2)
+	double getProbability (int node_1, int node_2) const
 	{
 		return probability_[node_1][node_2];
 	}
+
+	double getDistance (int node_1, int node_2) const
+	{
+		return distance_[node_1][node_2];
+	}
 	
-	std::string getNodeName (int idx)
+	std::string getNodeName (int idx) const
 	{
 		return node_[idx].getName();
 	}
 
-	int getNumNodes () 
+	int getNumNodes () const
 	{
 		return num_nodes_;
 	}
 
-	bool isNodeRepeatable (int idx)
+	bool isNodeRepeatable (int idx) const
 	{
 		return node_[idx].isRepeatable();
 	}
 
-	bool isNodeRequired (int idx)
+	bool isNodeRequired (int idx) const
 	{
 		return node_[idx].isRequired();
 	}

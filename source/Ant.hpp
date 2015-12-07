@@ -10,18 +10,18 @@ class Ant
 	
 	SpaceInformation *si_;
 	int *path_;
-	double fitness_;
 	
 	bool isNodeValid (int idx)
 	{
-		if (si_->isNodeRepeatable(idx)) return 1;
+		if (si_->isNodeRepeatable(idx)) 
+			return 1;
 
 		for (int i = 0; i < 50; ++i)
 		{
 			if ( path_[i] == idx )
 				return 0;
 			if ( path_[i] == -1) 
-				return 1;
+				return 1;	
 		}		
 	} 
 
@@ -36,7 +36,7 @@ class Ant
 			if (  isNodeValid(i) )
 				total = total + si_->getProbability (actual, i);
 		}
-		srand(time(NULL));
+		//srand(time(NULL));
 		p = std::rand() % (int)(total*1000);
 		p++; // To prevent value 0	
 
@@ -64,7 +64,7 @@ class Ant
 					if (path_[c] == i)
 						break;
 					if (path_[c] == -1)
-						return 0;					
+						return 0;				
 				}
 			}	
 		}
@@ -74,46 +74,50 @@ class Ant
 	public:
 	
 //TODO calcular tamaño de path
-	Ant (SpaceInformation *si) : si_(si) 
+	Ant (SpaceInformation *si=NULL) : si_(si) 
 	{ 
 		path_ = new int[50];
 		path_[0] = -1;	
 		for(int i=1; i<50; ++i) path_[i] = -1;
+		srand(time(NULL));
 	}
 
 	~Ant () { delete[] path_; }
 //TODO recalcular probabilidades cuando se van descartando nodos
 	void solve ()
 	{
-		srand(time(NULL));
+		//srand(time(NULL));
 		bool finish = 0;
 		int a = si_->getNumNodes();
 		path_[0] = std::rand() % a;
 		path_[1] = -1;
-		cout<<"num_nodes="<<si_->getNumNodes()<<", Path[0]="<<path_[0]<<", path[1]="<<path_[1]<<std::endl;
 
-		for (int i=0; finish; i++){
+		for (int i=0; 1; i++){
 			path_[i+1] = selectNextNode (path_[i]);
 			if (path_[i+1] == -1) return;
+			if (allNodesVisited()) return;
 			path_[i+2] = -1;
 		}
 	}
 
+	void setSpaceInformation (SpaceInformation *si) {si_ = si;}
+
 	friend ostream &operator<< (ostream &output, const Ant &A)
 	{
-		output << "PATH:" << std::endl << std::endl;
+		output << "PATH:" << std::endl;
 		for (int i = 0; i < 50; ++i)
 		{
 			if (A.path_[i] == -1)
-			{
-				output << A.si_->getNodeName(A.path_[i]);
 				return output;
-			}
-			cout<<"i="<<i<<", path[i]="<<A.path_[i]<<std::endl;
-			output << A.si_->getNodeName(A.path_[i]) << " -> ";
+			else if (i != 0)
+				output << " -> ";
+				
+			output << A.si_->getNodeName(A.path_[i]);
 		}
 		return output;
 	}
+
+	const int* getPath () const { return path_; }
 
 };
 
