@@ -10,7 +10,6 @@ class Ant
 	
 	SpaceInformation *si_;
 	int *path_;
-	double fitness_;
 	
 	bool isNodeValid (int idx)
 	{

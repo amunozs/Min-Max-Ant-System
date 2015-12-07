@@ -9,8 +9,15 @@ class Solver
 	Ant *ant_;
 	int *fitness_;
 	int num_ants_;
+	int num_iterations_;
+	int init_fitness;
+	int best_fitness_;
+	int* best_ant_;
+	double max;
+	double min;
 	double alpha;
 	double beta;
+	double evap;	
 
 	void calculateProbabilities ()
 	{
@@ -25,14 +32,21 @@ class Solver
 		} 
 	}
 
-	void calculateFitness (int idx)
+	void calculateFitness ()
 	{
-		int* path = ant_[idx].getPath();
-		int fitness = 0;
-//TODO cambiar 50
-		for (int i=0; i<50; i++)
+		int fitness ;
+		for (int i=0; i<num_ants_; i++)
 		{
-			fitness_[i] = 
+			fitness = init_fitness;
+//TODO cambiar 50
+			for (int c=0; c<50; c++)
+			{
+				if (ant_[i].getPath()[c+1] == -1) 
+					break;
+
+				fitness = fitness - si_->getDistance (ant_[i].getPath()[c], ant_[i].getPath()[c+1]); 
+			}
+			fitness_[i] = fitness;
 		}
 	}
 
@@ -44,12 +58,36 @@ class Solver
 		ant_ = new Ant[num_ants];
 		for (int i=0; i<num_ants; i++)
 			ant_[i].setSpaceInformation(si);
+		alpha = 1;
+		beta = 2;
+		evap = 0.1;
+		max = 10;
+		min = 1;
+		init_fitness = 25;
+		num_iterations_ = 50;
+		best_fitness_ = init_fitness + 1;
+//TODO 50
+		best_ant_ = new int[50];
+		//for (int i=0; i<50; i++);
+			//best_ant_[i] = -1;
 	}
 
 	~Solver () 
 	{
 		delete[] ant_;
 		delete[] fitness_;
+		delete[] best_ant_;
+	}
+
+	void solve ()
+	{
+		for (int i=0; i<num_iterations_; i++)
+		{
+			for (int a=0; a<num_ants_; a++)
+			{
+				ant_[a].solve();
+			}
+		}
 	}
 
 };
