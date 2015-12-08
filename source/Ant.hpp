@@ -33,7 +33,7 @@ class Ant
 
 		for (int i=0; i < si_->getNumNodes(); ++i)
 		{
-			if (  isNodeValid(i) )
+			if (  isNodeValid(i) && si_->getDistance (actual, i) != -1)
 				total = total + si_->getProbability (actual, i);
 		}
 		//srand(time(NULL));
@@ -42,13 +42,15 @@ class Ant
 
 		for (int i=0; i<si_->getNumNodes(); ++i)
 		{
-			if ( isNodeValid(i) )
+			if ( isNodeValid(i)  && si_->getDistance (actual, i) != -1)
 			{
 				accum = accum + si_->getProbability (actual, i) * 1000;
 				if ( p <= accum ) 
-					return i;
+					{//std::cout<<"actual: "<<actual<<", next: "<<i<<std::endl; 
+					return i;}
 			}
 		}
+		//std::cout<<"actual: "<<actual<<", next: "<<-1<<std::endl; 
 		return -1;
 	}
 
@@ -87,22 +89,35 @@ class Ant
 	void solve ()
 	{
 		//srand(time(NULL));
-		std::cout<<"solving..."<<std::endl;
-		std::cout<<*si_<<std::endl;
+		//std::cout<<"solving..."<<std::endl;
+		//std::cout<<*si_<<std::endl;
 		bool finish = 0;
 		int a = si_->getNumNodes();
 		path_[0] = std::rand() % a;
 		path_[1] = -1;
 
+		//int borrar_esto;
+
 		for (int i=0; 1; i++){
 			path_[i+1] = selectNextNode (path_[i]);
+			//if ((path_[i] <= 2 && path_[i+1] <= 2) || (path_[i] >= 3 && path_[i+1] >= 3)) cin>>borrar_esto;
 			if (path_[i+1] == -1) return;
 			if (allNodesVisited()) return;
 			path_[i+2] = -1;
 		}
 	}
 
-	Ant &operator=(const Ant &A)
+	Ant& operator=( const Ant& A )
+	{
+		for(int i=0; i<50; i++)
+		{
+			path_[i] = A.path_[i];
+		}
+		si_ = A.si_;
+		return *this;
+	}
+
+	/*Ant &operator=(const Ant &A)
 	{
 		if(this != &A)
 		{
@@ -117,7 +132,7 @@ class Ant
 			}
 		}
 		return *this;
-	}
+	}*/
 
 	void setSpaceInformation (SpaceInformation *si) {si_ = si;}
 

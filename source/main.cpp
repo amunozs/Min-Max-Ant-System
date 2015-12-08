@@ -31,6 +31,6 @@ int main () {
 	//cout<<A<<std::endl;
 	Solver S(&P);
 	S.solve();
-
+	S.printSol();
 	return 0;
 }
