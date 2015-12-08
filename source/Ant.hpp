@@ -73,6 +73,13 @@ class Ant
 		return 1;
 	}
 	
+	void resetAnt()
+	{
+		for (int i =0; i<50; i++)
+			path_[i] = -1;
+	}
+	
+
 	public:
 	
 //TODO calcular tamaño de path
@@ -89,6 +96,7 @@ class Ant
 	void solve ()
 	{
 		//srand(time(NULL));
+		resetAnt();
 		//std::cout<<"solving..."<<std::endl;
 		//std::cout<<*si_<<std::endl;
 		bool finish = 0;
@@ -117,23 +125,6 @@ class Ant
 		return *this;
 	}
 
-	/*Ant &operator=(const Ant &A)
-	{
-		if(this != &A)
-		{
-			delete[] path_;
-			if(A.path_)
-			{
-				path_ = new int[50];
-				for (int i=0; i<50; i++)
-				{
-					path_[i] = A.path_[i];
-				}
-			}
-		}
-		return *this;
-	}*/
-
 	void setSpaceInformation (SpaceInformation *si) {si_ = si;}
 
 	friend ostream &operator<< (ostream &output, const Ant &A)
@@ -152,7 +143,6 @@ class Ant
 	}
 
 	const int* getPath () const { return path_; }
-
 };
 
 #endif

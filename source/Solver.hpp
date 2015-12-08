@@ -89,7 +89,7 @@ class Solver
 		max = 10;
 		min = 1;
 		init_fitness = 10;
-		num_iterations_ = 10;
+		num_iterations_ = 1000;
 		best_fitness_global = 100;
 	}
 
