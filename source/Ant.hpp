@@ -36,21 +36,17 @@ class Ant
 			if (  isNodeValid(i) && si_->getDistance (actual, i) != -1)
 				total = total + si_->getProbability (actual, i);
 		}
-		//srand(time(NULL));
 		p = std::rand() % (int)(total*1000);
 		p++; // To prevent value 0	
-
 		for (int i=0; i<si_->getNumNodes(); ++i)
 		{
 			if ( isNodeValid(i)  && si_->getDistance (actual, i) != -1)
 			{
 				accum = accum + si_->getProbability (actual, i) * 1000;
 				if ( p <= accum ) 
-					{//std::cout<<"actual: "<<actual<<", next: "<<i<<std::endl; 
-					return i;}
+					return i;
 			}
 		}
-		//std::cout<<"actual: "<<actual<<", next: "<<-1<<std::endl; 
 		return -1;
 	}
 
@@ -92,7 +88,7 @@ class Ant
 	}
 
 	~Ant () { delete[] path_; }
-//TODO recalcular probabilidades cuando se van descartando nodos
+
 	void solve ()
 	{
 		//srand(time(NULL));
@@ -101,14 +97,18 @@ class Ant
 		//std::cout<<*si_<<std::endl;
 		bool finish = 0;
 		int a = si_->getNumNodes();
-		path_[0] = std::rand() % a;
-		path_[1] = -1;
 
-		//int borrar_esto;
-
-		for (int i=0; 1; i++){
+		while(1)
+		{
+			path_[0] = std::rand() % a;
+			path_[1] = -1;
+			if (si_->isNodeRepeatable(path_[0]))
+				break;
+		}
+		
+		for (int i=0; 1; i++)
+		{
 			path_[i+1] = selectNextNode (path_[i]);
-			//if ((path_[i] <= 2 && path_[i+1] <= 2) || (path_[i] >= 3 && path_[i+1] >= 3)) cin>>borrar_esto;
 			if (path_[i+1] == -1) return;
 			if (allNodesVisited()) return;
 			path_[i+2] = -1;
@@ -123,6 +123,27 @@ class Ant
 		}
 		si_ = A.si_;
 		return *this;
+	}
+
+	bool satisfiesCapacity ()
+	{
+		int *capacities_ = new int[si_->getNumNodes()];
+		for (int i=0; i<si_->getNumNodes(); i++)
+		{
+			capacities_[i] = si_->getCapacity (i);
+		}
+//TODO ese i+2 es cutre de cojones
+		for (int i=0; i<50; i=i+2)
+		{
+			if (path_[i] != -1)
+				if (si_->getCapacity(path_[i]) != -1)
+				{
+					capacities_[path_[i]] = capacities_[path_[i]] - capacities_[path_[i+1]];
+					if (capacities_[path_[i]] < 0)
+						return 0;
+				}
+		}
+		return 1;
 	}
 
 	void setSpaceInformation (SpaceInformation *si) {si_ = si;}

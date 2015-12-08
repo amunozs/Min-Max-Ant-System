@@ -28,13 +28,14 @@ class Solver
 		{
 			for (int c=0; c<si_->getNumNodes(); c++)
 			{
-				if (c<=i) continue;
 				if (si_->getDistance(i,c) == -1) 
 					p=0;
+				else if (si_->getDistance(i,c) == 0)
+					p=1;
 				else
 					p = pow(si_->getFeromone(i,c), alpha) * pow(si_->getDistance(i,c), beta);
+
 				si_->setProbability(i,c,p);
-				si_->setProbability(c,i,p);
 			}
 		} 
 	}
@@ -47,24 +48,22 @@ class Solver
 		{
 			fitness = init_fitness;
 //TODO cambiar 50
-			//std::cout<<"fit: 10"; 
 			for (int c=0; c<50; c++)
 			{
 				if (ant_[i].getPath()[c+1] == -1) 
 					break;
-				//std::cout<<"+"<<si_->getDistance (ant_[i].getPath()[c], ant_[i].getPath()[c+1]);
 				fitness = fitness + si_->getDistance (ant_[i].getPath()[c], ant_[i].getPath()[c+1]); 
 			}
-			//std::cout<<std::endl<<"total = "<<fitness<<std::endl;
+			
+			if (ant_[i].satisfiesCapacity ())
+				{std::cout<<"SI!!"<<std::endl; fitness = fitness - 10;}
+
 			fitness_[i] = fitness;
 			if (fitness < best_fitness_)
 			{
 				best_fitness_ = fitness;
-				//for (int c=0; c<50; c++)
-				//	best_ant_[c] = ant_[i].getPath()[c];
-				//std::cout<<"best fitness "<<i<<": "<<fitness<<std::endl;
 				best_ant_ = ant_[i];
-				//std::cout<<"b "<<b<<std::endl;
+
 				if (fitness < best_fitness_global)
 				{
 					best_ant_global_ = ant_[i];
@@ -89,7 +88,7 @@ class Solver
 		max = 10;
 		min = 1;
 		init_fitness = 10;
-		num_iterations_ = 2;
+		num_iterations_ = 1000;
 		best_fitness_global = 100;
 	}
 
@@ -104,6 +103,7 @@ class Solver
 		calculateProbabilities();
 		for (int i=0; i<num_iterations_; i++)
 		{
+			//std:cout<<"i="<<i<<std::endl;
 			for (int a=0; a<num_ants_; a++)
 			{
 				//std::cout<<"a="<<a<<std::endl;
@@ -119,9 +119,7 @@ class Solver
 
 	void printSol()
 	{
-		cout<<*si_<<std::endl;
-		cout<<"SOLUTION "<<best_ant_global_<<std::endl<<"FITNESS: "<<best_fitness_global<<std::endl;
-		
+		//cout<<*si_<<std::endl;
+		cout<<"SOLUTION "<<best_ant_global_<<std::endl<<"FITNESS: "<<best_fitness_global<<std::endl;	
 	}
-
 };

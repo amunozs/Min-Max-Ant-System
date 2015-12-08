@@ -13,7 +13,7 @@ int main () {
 	for (int i=0 ; i<6; i++)
 	{
 		//std::cout<<"i="<<i<<std::endl;
-		for (int c = 0; c<6; c++){
+		for (int c = 0; c<9; c++){
 			//std::cout<<"c="<<c<<std::endl;
 			if (i==c)
 				P.setFeromone(i,c,0);
@@ -31,6 +31,6 @@ int main () {
 	//cout<<A<<std::endl;
 	Solver S(&P);
 	S.solve();
-	S.printSolution();
+	S.printSol();
 	return 0;
 }

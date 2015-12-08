@@ -10,10 +10,10 @@ int main () {
 		//std::cout<<"NOPE";
 	//std::cout<<P;
 	
-	for (int i=0 ; i<6; i++)
+	for (int i=0 ; i<9; i++)
 	{
 		//std::cout<<"i="<<i<<std::endl;
-		for (int c = 0; c<6; c++){
+		for (int c = 0; c<9; c++){
 			//std::cout<<"c="<<c<<std::endl;
 			if (i==c)
 				P.setFeromone(i,c,0);

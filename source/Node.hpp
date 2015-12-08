@@ -12,6 +12,7 @@ class Node
 
 	bool repeatable_;
 	bool required_;
+	int capacity_;
 	std::string name_;	
 
 	public:
@@ -22,20 +23,22 @@ class Node
 	bool isRepeatable	() const	{ return repeatable_; }
 	bool isRequired		() const	{ return required_; }
 	std::string getName	() const	{ return name_; }
+	int getCapacity		() const	{ return capacity_; }
 
 	void setrepeatable	(bool repeatable)	{ repeatable_ = repeatable; }
 	void setRequired	(bool required)		{ required_ = required; }
 	void setName 		(std::string name)	{ name_ = name; }
+	void setCapacity 	(int capacity)		{ capacity_ = capacity; }
 
 	friend ostream &operator<< (ostream &output, const Node &N)
 	{
-		output << N.name_ << ", " << N.required_ << ", " << N.repeatable_;
+		output << N.name_ << ", " << N.required_ << ", " << N.repeatable_ <<", " << N.capacity_;
 		return output;
 	}
 
 	friend istream &operator>> ( istream  &input, Node &N )
     { 
-        input >> N.name_ >> N.required_ >> N.repeatable_;
+        input >> N.name_ >> N.required_ >> N.repeatable_ >> N.capacity_;
         return input;            
     }
 };

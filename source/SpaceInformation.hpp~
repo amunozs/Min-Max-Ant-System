@@ -11,6 +11,7 @@ class SpaceInformation
 	double **feromone_;
 	int **distance_;
 	int **probability_;	
+	
 
 	int num_nodes_;
 
@@ -40,7 +41,7 @@ class SpaceInformation
 
 	void freeMemory () 
 	{
-		delete[] node_;
+		delete [] node_;
 
 		for (int i = 0; i < num_nodes_; ++i)
 		{
@@ -131,6 +132,11 @@ class SpaceInformation
 	bool isNodeRequired (int idx) const
 	{
 		return node_[idx].isRequired();
+	}
+
+	int getCapacity (int idx) const
+	{
+		return node_[idx].getCapacity();
 	}
 
 	friend ostream &operator<< (ostream &output, const SpaceInformation &S)
