@@ -33,7 +33,7 @@ class Solver
 				else if (si_->getDistance(i,c) == 0)
 					p=1;
 				else
-					p = pow(si_->getFeromone(i,c), alpha) * pow(si_->getDistance(i,c), beta);
+					p = pow(si_->getFeromone(i,c), alpha) * pow((1/(double)si_->getDistance(i,c)), beta);
 
 				si_->setProbability(i,c,p);
 			}
@@ -73,9 +73,46 @@ class Solver
 		}
 	}
 
+	void calculateFeromone ()
+	{
+	double fer;
+		for (int i=0 ; i<si_->getNumNodes(); i++)
+		{
+			for (int c = 0; c<si_->getNumNodes(); c++)
+			{
+				if (i==c)
+					si_->setFeromone(i,c,0);
+				else
+				{
+					fer = si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_);  
+				}
+				
+				if (si_->getFeromone(i,c) > max)
+					si_->setFeromone(i,c,max);
+				else if (si_->getFeromone(i,c) < min)
+					si_->setFeromone(i,c,min);
+
+			}
+		}
+	}
+
+	void resetFeromone ()
+	{
+		for (int i=0 ; i<si_->getNumNodes(); i++)
+		{
+			for (int c = 0; c<si_->getNumNodes(); c++)
+			{
+				if (i==c)
+					si_->setFeromone(i,c,0);
+				else
+					si_->setFeromone(i,c,max);				
+			}
+		}
+	}
+
 	public:
 	
-	Solver (SpaceInformation *si, int num_ants = 10) : si_(si) , num_ants_(num_ants)
+	Solver (SpaceInformation *si, int num_ants = 5) : si_(si) , num_ants_(num_ants)
 	{
 		
 		fitness_ = new int[num_ants];
@@ -84,11 +121,11 @@ class Solver
 			ant_[i].setSpaceInformation(si);
 		alpha = 1;
 		beta = 2;
-		evap = 0.1;
+		evap = 0.9;
 		max = 10;
 		min = 1;
 		init_fitness = 10;
-		num_iterations_ = 1000;
+		num_iterations_ = 10;
 		best_fitness_global = 100;
 	}
 
@@ -100,7 +137,9 @@ class Solver
 
 	void solve ()
 	{
+		resetFeromone();
 		calculateProbabilities();
+		
 		for (int i=0; i<num_iterations_; i++)
 		{
 			//std:cout<<"i="<<i<<std::endl;
@@ -112,6 +151,7 @@ class Solver
 				//cout<<ant_[a]<<std::endl;
 			}
 			calculateFitness();
+			calculateFeromone();
 			calculateProbabilities();
 			//std::cout<<"BEST "<<best_ant_<<std::endl;
 		}

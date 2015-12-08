@@ -140,8 +140,7 @@ class Ant
 				{
 					capacities_[path_[i]] = capacities_[path_[i]] - capacities_[path_[i+1]];
 					if (capacities_[path_[i]] < 0)
-						{//std::cout<<"Ret0"<<std::endl;
-						return 0;}
+						return 0;
 				}
 		}
 		return 1;

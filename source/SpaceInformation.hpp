@@ -10,7 +10,7 @@ class SpaceInformation
 	Node *node_;
 	double **feromone_;
 	int **distance_;
-	int **probability_;	
+	double **probability_;	
 	
 
 	int num_nodes_;
@@ -29,13 +29,13 @@ class SpaceInformation
 
 		feromone_ = new double*[num_nodes];
 		distance_ = new int*[num_nodes];
-		probability_ = new int*[num_nodes];
+		probability_ = new double*[num_nodes];
 
 		for (int i = 0; i < num_nodes; ++i)
 		{
     		feromone_[i] = new double[num_nodes];
 			distance_[i] = new int[num_nodes];
-			probability_[i] = new int[num_nodes];
+			probability_[i] = new double[num_nodes];
 		}
 	}
 
