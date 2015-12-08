@@ -87,6 +87,8 @@ class Ant
 	void solve ()
 	{
 		//srand(time(NULL));
+		std::cout<<"solving..."<<std::endl;
+		std::cout<<*si_<<std::endl;
 		bool finish = 0;
 		int a = si_->getNumNodes();
 		path_[0] = std::rand() % a;
@@ -98,6 +100,24 @@ class Ant
 			if (allNodesVisited()) return;
 			path_[i+2] = -1;
 		}
+		cout<<*this;
+	}
+
+	Ant &operator=(const Ant &A)
+	{
+		if(this != &A)
+		{
+			delete[] path_;
+			if(A.path_)
+			{
+				path_ = new int[50];
+				for (int i=0; i<50; i++)
+				{
+					path_[i] = A.path_[i];
+				}
+			}
+		}
+		return *this;
 	}
 
 	void setSpaceInformation (SpaceInformation *si) {si_ = si;}

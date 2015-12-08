@@ -12,21 +12,25 @@ int main () {
 	
 	for (int i=0 ; i<6; i++)
 	{
+		//std::cout<<"i="<<i<<std::endl;
 		for (int c = 0; c<6; c++){
+			//std::cout<<"c="<<c<<std::endl;
 			if (i==c)
-				P.setProbability(i,c,0);
+				P.setFeromone(i,c,0);
 			else
-				P.setProbability(i,c,1);				
+				P.setFeromone(i,c,1);				
 		}
 	}
 	
 	//std::cout<<P;
 		
 	//std::cout<<"node 0: "<<P.isNodeRepeatable (4)<<std::endl;
-	Ant A (&P);
-	A.solve();
+//	Ant A (&P);
+//	A.solve();
 	std:cout<<"main"<<std::endl;
-	cout<<A<<std::endl;
+	//cout<<A<<std::endl;
+	Solver S(&P);
+	S.solve();
 
 	return 0;
 }
