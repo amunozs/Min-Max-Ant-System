@@ -2,7 +2,7 @@
 #define ANT_
 
 #include <cstdlib>
-#include "SpaceInformation.hpp"
+#include <SpaceInformation.hpp>
 
 class Ant
 {
@@ -95,7 +95,6 @@ class Ant
 		resetAnt();
 		//std::cout<<"solving..."<<std::endl;
 		//std::cout<<*si_<<std::endl;
-		bool finish = 0;
 		int a = si_->getNumNodes();
 
 		while(1)
@@ -148,7 +147,7 @@ class Ant
 
 	void setSpaceInformation (SpaceInformation *si) {si_ = si;}
 
-	friend ostream &operator<< (ostream &output, const Ant &A)
+    friend std::ostream &operator<< (std::ostream &output, const Ant &A)
 	{
 		output << "PATH:" << std::endl;
 		for (int i = 0; i < 50; ++i)

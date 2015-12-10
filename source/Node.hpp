@@ -4,8 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-//TODO quitar using namespace
-using namespace std;
+//using namespace std;
+
 class Node 
 {
 	private:
@@ -30,13 +30,13 @@ class Node
 	void setName 		(std::string name)	{ name_ = name; }
 	void setCapacity 	(int capacity)		{ capacity_ = capacity; }
 
-	friend ostream &operator<< (ostream &output, const Node &N)
+    friend std::ostream &operator<< (std::ostream &output, const Node &N)
 	{
 		output << N.name_ << ", " << N.required_ << ", " << N.repeatable_ <<", " << N.capacity_;
 		return output;
 	}
 
-	friend istream &operator>> ( istream  &input, Node &N )
+    friend std::istream &operator>> ( std::istream  &input, Node &N )
     { 
         input >> N.name_ >> N.required_ >> N.repeatable_ >> N.capacity_;
         return input;            

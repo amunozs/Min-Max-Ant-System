@@ -1,6 +1,10 @@
-#include "Ant.hpp"
+#ifndef SOLVER_
+#define SOLVER_
 
+#include <Ant.hpp>
 #include <cmath>
+#include <ctime>
+
 class Solver
 {
 	private:
@@ -20,6 +24,7 @@ class Solver
 	int alpha;
 	int beta;
 	double evap;	
+    double time_;
 
 	void calculateProbabilities ()
 	{
@@ -75,7 +80,7 @@ class Solver
 
 	void calculateFeromone ()
 	{
-	double fer;
+
 		for (int i=0 ; i<si_->getNumNodes(); i++)
 		{
 			for (int c = 0; c<si_->getNumNodes(); c++)
@@ -84,7 +89,8 @@ class Solver
 					si_->setFeromone(i,c,0);
 				else
 				{
-					fer = si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_);  
+                    //fer = si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_);
+                   // si_->setFeromone(i,c,si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_));
 				}
 				
 				if (si_->getFeromone(i,c) > max)
@@ -114,7 +120,7 @@ class Solver
 	
 	Solver (SpaceInformation *si, int num_ants = 5) : si_(si) , num_ants_(num_ants)
 	{
-		
+        std::cout<<"Solver"<<std::endl;
 		fitness_ = new int[num_ants];
 		ant_ = new Ant[num_ants];
 		for (int i=0; i<num_ants; i++)
@@ -127,7 +133,21 @@ class Solver
 		init_fitness = 10;
 		num_iterations_ = 10;
 		best_fitness_global = 100;
+        time_ = 0;
 	}
+
+    Solver (SpaceInformation *si, int num_ants, int num_iterations, int alpha, int beta, double max_fer, double min_fer, double evaporation) : si_(si) , num_ants_(num_ants), num_iterations_(num_iterations), alpha(alpha), beta(beta),
+        max(max_fer), min(min_fer), evap(evaporation)
+    {
+        fitness_ = new int[num_ants];
+        ant_ = new Ant[num_ants];
+        for (int i=0; i<num_ants; i++)
+            ant_[i].setSpaceInformation(si);
+        init_fitness = 10;
+        best_fitness_global = 100;
+        time_ = 0;
+    }
+
 
 	~Solver () 
 	{
@@ -137,29 +157,36 @@ class Solver
 
 	void solve ()
 	{
+        clock_t start = clock();
 		resetFeromone();
 		calculateProbabilities();
 		
 		for (int i=0; i<num_iterations_; i++)
 		{
-			//std:cout<<"i="<<i<<std::endl;
 			for (int a=0; a<num_ants_; a++)
-			{
-				//std::cout<<"a="<<a<<std::endl;
 				ant_[a].solve();
-				
-				//cout<<ant_[a]<<std::endl;
-			}
+	
 			calculateFitness();
 			calculateFeromone();
 			calculateProbabilities();
-			//std::cout<<"BEST "<<best_ant_<<std::endl;
 		}
+        clock_t end = clock();
+        double time_ = double(end - start) / (CLOCKS_PER_SEC/1000);
 	}
 
-	void printSol()
+    void printSol()
 	{
-		//cout<<*si_<<std::endl;
-		cout<<"SOLUTION "<<best_ant_global_<<std::endl<<"FITNESS: "<<best_fitness_global<<std::endl;	
+        std::cout<<"SOLUTION "<<best_ant_global_<<std::endl<<"FITNESS: "<<best_fitness_global<<std::endl;
 	}
+
+	void setNumIterations (int n) { num_iterations_ = n; }
+	void setNumAnts (int n) { num_ants_ = n; }
+	void setMaxFeromone (int n) { max = n; }
+	void setMinFeromone (int n) { min = n; }
+	void setAlpha (int n) { alpha = n; }
+	void setBeta (int n) { beta = n; }
+	void setEvaporationRatio (int n) { evap = n; }
+	void setInitialFitness (int n) {init_fitness = n; }
 };
+
+#endif

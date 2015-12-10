@@ -139,7 +139,7 @@ class SpaceInformation
 		return node_[idx].getCapacity();
 	}
 
-	friend ostream &operator<< (ostream &output, const SpaceInformation &S)
+    friend std::ostream &operator<< (std::ostream &output, const SpaceInformation &S)
 	{
 		output << "NODES:" << std::endl << std::endl;
 		for (int i = 0; i < S.num_nodes_; ++i)
