@@ -90,7 +90,7 @@ class Solver
 				else
 				{
                     //fer = si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_);
-                   // si_->setFeromone(i,c,si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_));
+                    si_->setFeromone(i,c,si_->getFeromone(i,c)*evap + (1-evap)*(200/best_fitness_));
 				}
 				
 				if (si_->getFeromone(i,c) > max)
