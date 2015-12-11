@@ -1013,38 +1013,38 @@ moc_myqtapp.o: moc_myqtapp.cpp
 ####### Install
 
 install_target: first FORCE
-	@test -d $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp || mkdir -p $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp
-	-$(INSTALL_PROGRAM) "$(QMAKE_TARGET)" "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp/$(QMAKE_TARGET)"
-	-$(STRIP) "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp/$(QMAKE_TARGET)"
+	@test -d $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp || mkdir -p $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp
+	-$(INSTALL_PROGRAM) "$(QMAKE_TARGET)" "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp/$(QMAKE_TARGET)"
+	-$(STRIP) "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp/$(QMAKE_TARGET)"
 
 uninstall_target: FORCE
-	-$(DEL_FILE) "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp/$(QMAKE_TARGET)"
-	-$(DEL_DIR) $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp/ 
+	-$(DEL_FILE) "$(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp/$(QMAKE_TARGET)"
+	-$(DEL_DIR) $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp/ 
 
 
 install_sources: first FORCE
-	@test -d $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/. || mkdir -p $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/.
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp.cpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/main.cpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp.h $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/Ant.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/Node.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/SpaceInformation.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/Solver.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp.ui $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
-	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/myqtapp/myqtapp.pro $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./
+	@test -d $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/. || mkdir -p $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/.
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp.cpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/main.cpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp.h $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/Ant.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/Node.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/SpaceInformation.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/Solver.hpp $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp.ui $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
+	-$(INSTALL_FILE) /home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/myqtapp.pro $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./
 
 uninstall_sources: FORCE
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./myqtapp.pro
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./myqtapp.ui
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./Solver.hpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./SpaceInformation.hpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./Node.hpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./Ant.hpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./myqtapp.h
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./main.cpp
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./myqtapp.cpp
-	-$(DEL_DIR) $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/myqtapp/./ 
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./myqtapp.pro
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./myqtapp.ui
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./Solver.hpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./SpaceInformation.hpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./Node.hpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./Ant.hpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./myqtapp.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./main.cpp
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./myqtapp.cpp
+	-$(DEL_DIR) $(INSTALL_ROOT)/home/ams/particion/MUIA/Metaheuristicas/MMAnts/source/./ 
 
 
 install:  install_target install_sources  FORCE

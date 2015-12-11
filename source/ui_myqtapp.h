@@ -53,20 +53,19 @@ public:
     QSpinBox *betaBox;
     QDoubleSpinBox *evapBox;
     QVBoxLayout *verticalLayout_3;
-    QLabel *timeLabel;
     QTextEdit *solutionText;
-    QHBoxLayout *horizontalLayout_3;
     QPushButton *solveBut;
     QPushButton *clearBut;
+    QHBoxLayout *horizontalLayout_3;
 
     void setupUi(QWidget *myQtAppDLG)
     {
         if (myQtAppDLG->objectName().isEmpty())
             myQtAppDLG->setObjectName(QStringLiteral("myQtAppDLG"));
-        myQtAppDLG->resize(438, 329);
+        myQtAppDLG->resize(354, 333);
         verticalLayoutWidget_4 = new QWidget(myQtAppDLG);
         verticalLayoutWidget_4->setObjectName(QStringLiteral("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(10, 10, 421, 311));
+        verticalLayoutWidget_4->setGeometry(QRect(10, 20, 331, 301));
         verticalLayout_4 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -136,12 +135,14 @@ public:
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         antsBox = new QSpinBox(verticalLayoutWidget_4);
         antsBox->setObjectName(QStringLiteral("antsBox"));
+        antsBox->setMaximum(99999);
         antsBox->setValue(10);
 
         verticalLayout_2->addWidget(antsBox);
 
         iterationsBox = new QSpinBox(verticalLayoutWidget_4);
         iterationsBox->setObjectName(QStringLiteral("iterationsBox"));
+        iterationsBox->setMaximum(9999);
         iterationsBox->setValue(10);
 
         verticalLayout_2->addWidget(iterationsBox);
@@ -172,6 +173,7 @@ public:
 
         evapBox = new QDoubleSpinBox(verticalLayoutWidget_4);
         evapBox->setObjectName(QStringLiteral("evapBox"));
+        evapBox->setMaximum(1);
         evapBox->setValue(0.9);
 
         verticalLayout_2->addWidget(evapBox);
@@ -181,28 +183,23 @@ public:
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        timeLabel = new QLabel(verticalLayoutWidget_4);
-        timeLabel->setObjectName(QStringLiteral("timeLabel"));
-
-        verticalLayout_3->addWidget(timeLabel);
-
         solutionText = new QTextEdit(verticalLayoutWidget_4);
         solutionText->setObjectName(QStringLiteral("solutionText"));
 
         verticalLayout_3->addWidget(solutionText);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         solveBut = new QPushButton(verticalLayoutWidget_4);
         solveBut->setObjectName(QStringLiteral("solveBut"));
 
-        horizontalLayout_3->addWidget(solveBut);
+        verticalLayout_3->addWidget(solveBut);
 
         clearBut = new QPushButton(verticalLayoutWidget_4);
         clearBut->setObjectName(QStringLiteral("clearBut"));
 
-        horizontalLayout_3->addWidget(clearBut);
+        verticalLayout_3->addWidget(clearBut);
 
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
 
         verticalLayout_3->addLayout(horizontalLayout_3);
 
@@ -230,7 +227,6 @@ public:
         label->setText(QApplication::translate("myQtAppDLG", "Alpha", 0));
         label_2->setText(QApplication::translate("myQtAppDLG", "Beta", 0));
         label_3->setText(QApplication::translate("myQtAppDLG", "Evaporation", 0));
-        timeLabel->setText(QApplication::translate("myQtAppDLG", "Time elapsed", 0));
         solveBut->setText(QApplication::translate("myQtAppDLG", "Solve", 0));
         clearBut->setText(QApplication::translate("myQtAppDLG", "Clear", 0));
     } // retranslateUi

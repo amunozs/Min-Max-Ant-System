@@ -187,6 +187,23 @@ class Solver
 	void setBeta (int n) { beta = n; }
 	void setEvaporationRatio (int n) { evap = n; }
 	void setInitialFitness (int n) {init_fitness = n; }
+    double getTime () { return time_; }
+    int getFitness () {return best_fitness_global;}
+    std::string getPath ()
+    {
+        std::string path_string;
+        const int* path = best_ant_global_.getPath();
+        //path_string += "SOLUTION:" + '\n';
+        for (int i=0; i<50; i=i+2)
+        {
+            if (path[i] == -1 || path[i+1] == -1) break;
+            path_string.append(si_->getNodeName(path[i]));
+            path_string.append(" -> ");
+            path_string.append(si_->getNodeName(path[i+1]));
+            path_string += '\n';
+        }
+        return path_string;
+    }
 };
 
 #endif
