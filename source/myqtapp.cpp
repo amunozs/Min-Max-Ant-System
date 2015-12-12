@@ -1,7 +1,6 @@
 #include <QtGui> 
 #include <QFileDialog>
 #include <QMessageBox>
-
 #include "myqtapp.h"
 
 #include <iostream>
@@ -70,7 +69,8 @@ void myQtApp::solve()
         //Solver S(SI);
         S.solve();
         S.printSol();
-        solutionText->append("Solution:\n" + QString::fromStdString(S.getPath()) + "\nCost = " + QString::number(S.getFitness()) + "\nTime = " + QString::number(S.getTime()) + "\n\n\n");
+        std::cout<<"T="<<S.getTime()<<"ms."<<std::endl;
+        solutionText->append("Solution:\n" + QString::fromStdString(S.getPath()) + "\nCost = " + QString::number(S.getFitness() ) + "\nTime = " + QString::number(S.getTime()) + "\n\n\n");
     }
 }
  

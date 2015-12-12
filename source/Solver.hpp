@@ -171,7 +171,8 @@ class Solver
 			calculateProbabilities();
 		}
         clock_t end = clock();
-        double time_ = double(end - start) / (CLOCKS_PER_SEC/1000);
+        time_ = double(end - start) / (CLOCKS_PER_SEC/1000);
+
 	}
 
     void printSol()
