@@ -1,7 +1,6 @@
 #include <QtGui> 
 #include <QFileDialog>
 #include <QMessageBox>
-
 #include "myqtapp.h"
 
 #include <iostream>

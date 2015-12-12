@@ -11,6 +11,8 @@ class myQtApp : public QWidget, private Ui::myQtAppDLG
 public:
     myQtApp(QWidget *parent = 0);
  
+private:
+    std::string path_;
  
 public slots:
     void getPath();

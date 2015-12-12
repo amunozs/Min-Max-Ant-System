@@ -60,7 +60,7 @@ class SpaceInformation
 		freeMemory();
 	}
 
-	bool readFromFile (const char * filename)
+    bool readFromFile (const char * filename)
 	{
 		std::ifstream file;
 		file.open (filename);
